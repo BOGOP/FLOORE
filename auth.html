@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/media.css">
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body class="auth-page-bg">
 
@@ -37,9 +36,26 @@
                 
                 <a href="#" class="forgot-link">Забыли пароль?</a>
                 
-                <button type="button" class="btn-auth">Войти</button>
-
+                <button type="button" class="btn-auth" onclick="forceLogin()">Войти</button>
                 <div class="auth-divider">или войдите через</div>
+
+<div style="display: flex; justify-content: center; margin-bottom: 25px;">
+    <div id="g_id_onload"
+         data-client_id="ТВОЙ_CLIENT_ID.apps.googleusercontent.com"
+         data-context="signin"
+         data-ux_mode="popup"
+         data-callback="handleGoogleAuth"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+         data-type="standard"
+         data-shape="rectangular"
+         data-theme="outline"
+         data-text="signin_with"
+         data-size="large"
+         data-logo_alignment="center">
+    </div>
+</div>
 
                 <div style="display: flex; justify-content: center; margin-bottom: 25px;">
                     <div id="g_id_onload"
@@ -107,9 +123,20 @@
                     <label for="terms">Я согласен(а) с <a href="#">политикой конфиденциальности</a> и <a href="#">условиями использования</a></label>
                 </div>
 
-                <button type="button" class="btn-auth">Создать аккаунт</button>
+                <button type="button" class="btn-auth" onclick="forceRegister()">Создать аккаунт</button>
 
                 <div class="auth-divider">или зарегистрируйтесь через</div>
+
+<div style="display: flex; justify-content: center; margin-bottom: 25px;">
+     <div class="g_id_signin"
+         data-type="standard"
+         data-shape="rectangular"
+         data-theme="outline"
+         data-text="signup_with"
+         data-size="large"
+         data-logo_alignment="center">
+    </div>
+</div>
 
                 <div style="display: flex; justify-content: center; margin-bottom: 25px;">
                      <div class="g_id_signin"
@@ -123,7 +150,7 @@
                 </div>
 
                 <div class="auth-footer">
-                    Уже есть аккаунт? <span id="toLogin">Войти</span>
+                    Уже есть аккаунт? <button type="button" class="btn-auth" onclick="forceLogin()">Войти</button>
                 </div>
             </form>
 

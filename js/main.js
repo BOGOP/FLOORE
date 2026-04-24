@@ -5,10 +5,8 @@ function renderHeader() {
   const headerContainer = document.getElementById('header-container');
   if (!headerContainer) return;
 
-  // Проверяем, вошел ли пользователь
   const isAuth = localStorage.getItem('isUserLoggedIn') === 'true';
 
-  // Создаем либо кнопки, либо иконку профиля
   let userActions = '';
   if (isAuth) {
       userActions = `
@@ -43,6 +41,11 @@ function renderHeader() {
       </div>
 
       <div class="header-icons" style="display: flex; align-items: center;">
+        <select id="lang-select" class="lang-select">
+            <option value="uk">UA</option>
+            <option value="en">EN</option>
+            <option value="ru">RU</option>
+        </select>
         ${userActions}
         <a href="profile.html#favorites" class="icon-btn" title="Избранное" style="margin-left: 20px;">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -57,8 +60,8 @@ function renderHeader() {
 
     <nav>
       <div class="nav-links">
-        <a href="index.html" class="nav-link">🎁 Букеты цветов</a>
-        <a href="gifts.html" class="nav-link">Подарки к цветам</a>
+        <a href="index.html" class="nav-link" data-i18n="nav_bouquets">🎁 Букеты цветов</a>
+        <a href="gifts.html" class="nav-link" data-i18n="nav_gifts">Подарки к цветам</a>
         <a href="boxes.html" class="nav-link">Цветы в коробках</a>
         <a href="baskets.html" class="nav-link">Корзины с цветами</a>
       </div>
@@ -73,10 +76,51 @@ function renderHeader() {
   </header>
   `;
 }
-renderHeader(); // Запускаем отрисовку
+renderHeader(); // Отрисовываем шапку сразу
 
 // =========================================
-// 2. БАЗА ДАННЫХ И КОРЗИНА
+// 2. МУЛЬТИЯЗЫЧНОСТЬ (СЛОВАРЬ И ФУНКЦИИ)
+// =========================================
+const translations = {
+    "uk": {
+        "bestsellers": "Хіт продажів",
+        "hero_title": "Нехай квіти говорять за вас",
+        "price": "грн",
+        "nav_bouquets": "🎁 Букети квітів",
+        "nav_gifts": "Подарунки до квітів"
+    },
+    "en": {
+        "bestsellers": "Bestsellers",
+        "hero_title": "Let flowers speak for you",
+        "price": "UAH",
+        "nav_bouquets": "🎁 Flower Bouquets",
+        "nav_gifts": "Gifts for flowers"
+    },
+    "ru": {
+        "bestsellers": "Хит продаж",
+        "hero_title": "Пусть цветы говорят за вас",
+        "price": "грн",
+        "nav_bouquets": "🎁 Букеты цветов",
+        "nav_gifts": "Подарки к цветам"
+    }
+};
+
+function setLanguage(lang) {
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            element.textContent = translations[lang][key];
+        }
+    });
+
+    localStorage.setItem('site_lang', lang);
+    const langSelect = document.getElementById('lang-select');
+    if (langSelect) langSelect.value = lang;
+}
+
+// =========================================
+// 3. БАЗА ДАННЫХ И КОРЗИНА
 // =========================================
 const PRODUCTS = [
   { id:1, name:'Букет «Розовая нежность»', price:890, emoji:'🌹', category:'roses', desc:'25 роз, упаковка' },
@@ -106,17 +150,16 @@ window.addToCart = function(productName) {
 };
 
 // =========================================
-// 3. ЛОГИКА АВТОРИЗАЦИИ (auth.html)
+// 4. ЛОГИКА АВТОРИЗАЦИИ (auth.html)
 // =========================================
-const loginTab = document.getElementById('tabLogin');
-const registerTab = document.getElementById('tabRegister');
-const loginForm = document.getElementById('formLogin');
-const registerForm = document.getElementById('formRegister');
-const toRegisterLink = document.getElementById('toRegister');
-const toLoginLink = document.getElementById('toLogin');
-
 function switchAuthTab(target) {
+    const loginTab = document.getElementById('tabLogin');
+    const registerTab = document.getElementById('tabRegister');
+    const loginForm = document.getElementById('formLogin');
+    const registerForm = document.getElementById('formRegister');
+    
     if(!loginTab || !registerTab) return;
+    
     if (target === 'register') {
         loginTab.classList.remove('active');
         registerTab.classList.add('active');
@@ -128,20 +171,6 @@ function switchAuthTab(target) {
         registerForm.classList.remove('active');
         loginForm.classList.add('active');
     }
-}
-
-if (loginTab && registerTab) {
-    loginTab.addEventListener('click', () => switchAuthTab('login'));
-    registerTab.addEventListener('click', () => switchAuthTab('register'));
-    toRegisterLink.addEventListener('click', () => switchAuthTab('register'));
-    toLoginLink.addEventListener('click', () => switchAuthTab('login'));
-
-    if (window.location.hash === '#register') switchAuthTab('register');
-
-    window.addEventListener('hashchange', function() {
-        if (window.location.hash === '#register') switchAuthTab('register');
-        else switchAuthTab('login');
-    });
 }
 
 const togglePasswordBtns = document.querySelectorAll('.toggle-password');
@@ -160,9 +189,47 @@ togglePasswordBtns.forEach(btn => {
         }
     });
 });
+// Обработка отправки формы Входа
+const formLoginElement = document.getElementById('formLogin');
+if (formLoginElement) {
+    formLoginElement.addEventListener('submit', function(event) {
+        event.preventDefault(); // Запрещаем стандартную перезагрузку страницы
+        
+        // Здесь в будущем будет проверка логина и пароля через сервер
+        // А пока просто "симулируем" успешный вход:
+        
+        localStorage.setItem('isUserLoggedIn', 'true'); // Записываем в память, что мы вошли
+        showToast('✅ Успешный вход!'); // Показываем красивое уведомление
+        
+        // Ждем полсекунды (чтобы юзер увидел уведомление) и переносим в профиль
+        setTimeout(() => {
+            window.location.href = 'profile.html'; 
+        }, 500);
+    });
+}
+
+// Обработка отправки формы Регистрации
+const formRegisterElement = document.getElementById('formRegister');
+if (formRegisterElement) {
+    formRegisterElement.addEventListener('submit', function(event) {
+        event.preventDefault(); // Запрещаем стандартную перезагрузку страницы
+        
+        localStorage.setItem('isUserLoggedIn', 'true'); // Записываем в память, что мы вошли
+        showToast('🎉 Регистрация успешна!'); 
+        
+        setTimeout(() => {
+            window.location.href = 'profile.html'; 
+        }, 500);
+    });
+}
+function logout() {
+    localStorage.removeItem('isUserLoggedIn');
+    localStorage.removeItem('tempCartCount');
+    window.location.href = 'index.html';
+}
 
 // =========================================
-// 4. ЛОГИКА ПРОФИЛЯ И ТАБОВ (profile.html)
+// 5. ЛОГИКА ПРОФИЛЯ И ТАБОВ (profile.html)
 // =========================================
 function switchTab(tab) {
   document.querySelectorAll('.sidebar-item').forEach(el => el.classList.remove('active'));
@@ -185,13 +252,15 @@ function handleHashTabs() {
     if (validTabs.includes(hash)) {
       switchTab(hash);
     } else {
-      switchTab('mydata'); // По умолчанию
+      switchTab('mydata'); 
     }
   }
+  // Для страницы авторизации
+  if (document.getElementById('tabLogin')) {
+      if (window.location.hash === '#register') switchAuthTab('register');
+      else switchAuthTab('login');
+  }
 }
-window.addEventListener('DOMContentLoaded', handleHashTabs);
-window.addEventListener('hashchange', handleHashTabs);
-
 
 function renderFavorites() {
   const grid = document.getElementById('fav-grid');
@@ -307,7 +376,6 @@ function calcCart() {
 
 function updateBadges() {
   const favCount = favorites.length;
-  // Складываем старую корзину из localStorage и новую
   const localCount = parseInt(localStorage.getItem('tempCartCount')) || 0;
   const cartCount = cart.reduce((s,c) => s+c.qty, 0) + localCount;
   
@@ -332,7 +400,7 @@ function saveProfile() {
 }
 
 // =========================================
-// 5. УВЕДОМЛЕНИЯ И ПОИСК
+// 6. ПОИСК И УВЕДОМЛЕНИЯ
 // =========================================
 let toastTimeout;
 function showToast(msg, type = 'success') {
@@ -413,36 +481,89 @@ function addToCartSearch(id) {
 }
 
 // =========================================
-// 6. ЧАТ ВИДЖЕТ (Если есть на странице)
+// 7. ЧАТ ВИДЖЕТ
 // =========================================
-const chatWidget = document.getElementById('chatWidget');
-const closeChatBtn = document.getElementById('closeChatBtn');
-const openChatBtn = document.getElementById('openChatBtn');
+function initChat() {
+    const chatWidget = document.getElementById('chatWidget');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const openChatBtn = document.getElementById('openChatBtn');
 
-if (openChatBtn && closeChatBtn && chatWidget) {
-    openChatBtn.addEventListener('click', function() {
-        chatWidget.style.display = 'block'; 
-        openChatBtn.style.display = 'none'; 
-    });
+    if (openChatBtn && closeChatBtn && chatWidget) {
+        openChatBtn.addEventListener('click', () => {
+            chatWidget.style.display = 'block'; 
+            openChatBtn.style.display = 'none'; 
+        });
 
-    closeChatBtn.addEventListener('click', function() {
-        chatWidget.style.display = 'none'; 
-        openChatBtn.style.display = 'flex'; 
-    });
+        closeChatBtn.addEventListener('click', () => {
+            chatWidget.style.display = 'none'; 
+            openChatBtn.style.display = 'flex'; 
+        });
+    }
 }
 
-// Запускаем подсчет бейджиков при старте
-updateBadges();
 // =========================================
-// 7. ЛОГИКА ВЫХОДА ИЗ АККАУНТА
+// 8. ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ САЙТА
 // =========================================
-function logout() {
-    // 1. Удаляем пометку об авторизации из памяти браузера
-    localStorage.removeItem('isUserLoggedIn');
+// Этот блок объединяет все функции, которые должны сработать при открытии страницы
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Инициализируем табы (корзина, профиль) и хеши
+    handleHashTabs();
+    window.addEventListener('hashchange', handleHashTabs);
+
+    // 2. Инициализируем язык
+    const savedLang = localStorage.getItem('site_lang') || 'uk';
+    setLanguage(savedLang);
+
+    // 3. Подключаем слушатель к переключателю языков
+    const langSelect = document.getElementById('lang-select');
+    if (langSelect) {
+        langSelect.addEventListener('change', (event) => {
+            setLanguage(event.target.value);
+        });
+    }
+
+    // 4. Обновляем счетчики корзины
+    updateBadges();
+
+    // 5. Инициализируем чат
+    initChat();
     
-    // 2. (По желанию) Очищаем временную корзину, чтобы чужой человек не увидел товары
-    localStorage.removeItem('tempCartCount');
+    // 6. Подключаем клики по табам авторизации
+    const loginTab = document.getElementById('tabLogin');
+    const registerTab = document.getElementById('tabRegister');
+    const toRegisterLink = document.getElementById('toRegister');
+    const toLoginLink = document.getElementById('toLogin');
     
-    // 3. Мгновенно перенаправляем на главную страницу
-    window.location.href = 'index.html';
-}
+    if (loginTab && registerTab) {
+        loginTab.addEventListener('click', () => switchAuthTab('login'));
+        registerTab.addEventListener('click', () => switchAuthTab('register'));
+        if(toRegisterLink) toRegisterLink.addEventListener('click', () => switchAuthTab('register'));
+        if(toLoginLink) toLoginLink.addEventListener('click', () => switchAuthTab('login'));
+    }
+});
+// --- ЖЕЛЕЗОБЕТОННЫЙ ВХОД И РЕГИСТРАЦИЯ (Без системных окон) ---
+window.forceLogin = function() {
+    localStorage.setItem('isUserLoggedIn', 'true'); // Записываем вход
+    
+    // Показываем красивое уведомление (если функция существует)
+    if (typeof showToast === 'function') {
+        showToast('✅ Успешный вход!');
+    }
+    
+    // Ждем 400 миллисекунд (чтобы пользователь заметил уведомление) и мягко переносим в профиль
+    setTimeout(() => {
+        window.location.href = 'profile.html';
+    }, 400);
+};
+
+window.forceRegister = function() {
+    localStorage.setItem('isUserLoggedIn', 'true');
+    
+    if (typeof showToast === 'function') {
+        showToast('🎉 Аккаунт создан!');
+    }
+    
+    setTimeout(() => {
+        window.location.href = 'profile.html';
+    }, 400);
+};
