@@ -60,7 +60,7 @@ function renderHeader() {
 
     <nav>
       <div class="nav-links">
-        <a href="index.html" class="nav-link" data-i18n="nav_bouquets">🎁 Букеты цветов</a>
+        <a href="index.html" class="nav-link" data-i18n="nav_bouquets"> Букеты цветов</a>
         <a href="gifts.html" class="nav-link" data-i18n="nav_gifts">Подарки к цветам</a>
         <a href="boxes.html" class="nav-link">Цветы в коробках</a>
         <a href="baskets.html" class="nav-link">Корзины с цветами</a>
