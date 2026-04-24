@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petalora — Доставка цветов Одесса</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <main>
+      <div class="profile-layout">
+
+        <div class="sidebar">
+          <div class="sidebar-avatar">
+            <div class="avatar-circle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div class="sidebar-name">Иван Иванов</div>
+            <div class="sidebar-email">ivan@example.com</div>
+          </div>
+          <div class="sidebar-menu">
+            <div class="sidebar-item active" id="tab-mydata" onclick="switchTab('mydata')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Мои данные
+            </div>
+            <div class="sidebar-item" id="tab-orders" onclick="switchTab('orders')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+              История заказов
+              <span class="sidebar-badge">2</span>
+            </div>
+            <div class="sidebar-item" id="tab-favorites" onclick="switchTab('favorites')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              Избранное
+              <span class="sidebar-badge" id="fav-count-badge">3</span>
+            </div>
+            <div class="sidebar-item" id="tab-cart" onclick="switchTab('cart')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              Корзина
+              <span class="sidebar-badge" id="cart-count-badge">3</span>
+            </div>
+            <div class="sidebar-item" id="tab-addresses" onclick="switchTab('addresses')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Адреса доставки
+            </div>
+            
+            <div class="sidebar-item danger" onclick="logout()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              Выйти из аккаунта
+            </div>
+          </div>
+        </div>
+
+        <div class="content-card active" id="panel-mydata">
+          <div class="card-title">Личная информация</div>
+          <div class="card-subtitle">Здесь вы можете изменить свои контактные данные.</div>
+          <div class="form-row">
+            <div class="form-group" style="margin-bottom:0">
+              <label>Имя</label>
+              <input class="form-input" id="fname" value="Иван" type="text">
+            </div>
+            <div class="form-group" style="margin-bottom:0">
+              <label>Фамилия</label>
+              <input class="form-input" id="lname" value="Иванов" type="text">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-input" value="ivan@example.com" type="email" readonly>
+          </div>
+          <div class="form-group">
+            <label>Телефон</label>
+            <input class="form-input" id="phone" value="+380 99 123 45 67" type="tel">
+          </div>
+          <button class="btn-primary" onclick="saveProfile()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Сохранить изменения
+          </button>
+          <div class="save-success" id="save-success">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Данные успешно сохранены!
+          </div>
+        </div>
+
+        <div class="content-card" id="panel-orders">
+          <div class="card-title">История заказов</div>
+          <div class="card-subtitle">Все ваши заказы за последнее время.</div>
+
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <div class="order-id">Заказ №PE-2024-0842</div>
+                <div class="order-date">15 апреля 2025</div>
+              </div>
+              <span class="order-status status-delivered">Доставлен ✓</span>
+            </div>
+            <div class="order-items">
+              <div class="order-item-chip">🌹 Букет «Розовая нежность»</div>
+              <div class="order-item-chip">🎁 Открытка</div>
+            </div>
+            <div class="order-total">Итого: <strong>890 грн</strong></div>
+          </div>
+
+          <div class="order-card">
+            <div class="order-header">
+              <div>
+                <div class="order-id">Заказ №PE-2024-0791</div>
+                <div class="order-date">2 апреля 2025</div>
+              </div>
+              <span class="order-status status-pending">В обработке…</span>
+            </div>
+            <div class="order-items">
+              <div class="order-item-chip">🌷 Тюльпаны микс 25 шт</div>
+            </div>
+            <div class="order-total">Итого: <strong>450 грн</strong></div>
+          </div>
+        </div>
+
+        <div class="content-card" id="panel-favorites">
+          <div class="card-title">Избранное</div>
+          <div class="card-subtitle">Товары, которые вы добавили в список желаний.</div>
+          <div class="fav-grid" id="fav-grid"></div>
+        </div>
+
+        <div class="content-card" id="panel-cart">
+          <div class="card-title">Корзина покупок</div>
+          <div class="card-subtitle">Ваши товары готовы к оформлению заказа.</div>
+          <div class="cart-layout">
+            <div class="cart-items" id="cart-items-list"></div>
+            <div class="cart-summary">
+              <div class="summary-title">Ваш заказ</div>
+              <div class="summary-row"><span>Товары (<span id="cart-items-count">3</span>)</span><span id="sum-items">1 540 грн</span></div>
+              <div class="summary-row"><span>Доставка</span><span>Бесплатно</span></div>
+              <div class="promo-wrap">
+                <input class="promo-input" placeholder="Промокод" id="promo-input">
+              </div>
+              <div class="summary-row total"><span>Итого</span><span id="sum-total">1 540 грн</span></div>
+              <button class="checkout-btn" onclick="showToast('🎉 Заказ оформлен! Ожидайте звонка.')">
+                Оформить заказ
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-card" id="panel-addresses">
+          <div class="card-title">Адреса доставки</div>
+          <div class="card-subtitle">Управляйте адресами для быстрого оформления заказа.</div>
+
+          <div class="address-card default">
+            <div class="address-info">
+              <svg class="address-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div class="address-text">
+                <strong>Дом</strong>
+                <span>ул. Дерибасовская 12, кв. 34, Одесса</span>
+              </div>
+            </div>
+            <span class="default-badge">По умолчанию</span>
+          </div>
+
+          <div class="address-card">
+            <div class="address-info">
+              <svg class="address-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+              <div class="address-text">
+                <strong>Работа</strong>
+                <span>пр. Шевченко 4, оф. 201, Одесса</span>
+              </div>
+            </div>
+            <button class="btn-outline" style="font-size:12px;padding:7px 16px;">Изменить</button>
+          </div>
+
+          <button class="add-address-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Добавить адрес
+          </button>
+        </div>
+
+      </div> </main>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>

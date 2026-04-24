@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подарки к цветам - Petalora</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+</head>
+<body>
+    <!-- Сюда JS автоматически вставит шапку и навигацию -->
+    <div id="header-container"></div>
+
+    <main class="container" style="padding-top: 40px;">
+        <div class="section-header">
+            <h2>Подарки к цветам</h2>
+            <p style="color: var(--text-gray);">Идеальное дополнение к любому букету</p>
+        </div>
+
+        <div class="product-grid">
+            <!-- Карточка 1 -->
+            <div class="product-card">
+                <i class="far fa-heart wishlist-icon"></i>
+                <img src="https://via.placeholder.com/300x250/ffe6e6/ff6666?text=Плюшевый+мишка" alt="Мишка">
+                <h3 class="product-title">Плюшевый мишка "Тедди"</h3>
+                <p class="product-desc">Мягкая игрушка, размер 30 см. Идеально для романтического подарка.</p>
+                <div class="price-block" style="margin-bottom: 15px;">
+                    <span class="new-price">$25</span>
+                </div>
+                <button class="btn-cart" onclick="addToCart('Плюшевый мишка')">В корзину</button>
+            </div>
+
+            <!-- Карточка 2 -->
+            <div class="product-card">
+                <i class="far fa-heart wishlist-icon"></i>
+                <img src="https://via.placeholder.com/300x250/fff2cc/cc9900?text=Ferrero+Rocher" alt="Шоколад">
+                <h3 class="product-title">Набор Ferrero Rocher</h3>
+                <p class="product-desc">Классические шоколадные конфеты с лесным орехом, 200г.</p>
+                <div class="price-block" style="margin-bottom: 15px;">
+                    <span class="new-price">$15</span>
+                </div>
+                <button class="btn-cart" onclick="addToCart('Набор Ferrero Rocher')">В корзину</button>
+            </div>
+
+            <!-- Карточка 3 -->
+            <div class="product-card">
+                <i class="far fa-heart wishlist-icon"></i>
+                <img src="https://via.placeholder.com/300x250/e6f2ff/0066cc?text=Открытка" alt="Открытка">
+                <h3 class="product-title">Авторская открытка</h3>
+                <p class="product-desc">Открытка ручной работы. Подпишем вашим текстом.</p>
+                <div class="price-block" style="margin-bottom: 15px;">
+                    <span class="new-price">$5</span>
+                </div>
+                <button class="btn-cart" onclick="addToCart('Авторская открытка')">В корзину</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

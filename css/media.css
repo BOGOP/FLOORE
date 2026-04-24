@@ -1,0 +1,118 @@
+/* =========================================
+   АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (до 992px)
+   ========================================= */
+@media (max-width: 992px) {
+    /* Товары перестраиваются в 2 колонки вместо 4 */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Уменьшаем боковые отступы */
+    nav, .header-top, .hero-inner, .profile-layout {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    
+    /* Сужаем левое меню в профиле */
+    .profile-layout {
+        grid-template-columns: 200px 1fr;
+    }
+    
+    /* Корзина выстраивается в один столбик */
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНОВ (до 768px)
+   ========================================= */
+@media (max-width: 768px) {
+    /* --- Шапка и Навигация --- */
+    .header-top {
+        flex-wrap: wrap; /* Позволяем элементам переноситься на новую строку */
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .header-city {
+        display: none; /* Прячем город на телефоне для экономии места */
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px !important;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .search-wrap, .search-input {
+        width: 100%; /* Поиск растягивается на весь экран */
+    }
+
+    /* --- Главный баннер --- */
+    .hero-banner {
+        height: auto !important; /* Убираем жесткую высоту в 80px */
+        padding: 20px 0;
+        margin-bottom: 25px;
+    }
+    
+    .hero-text h1 {
+        font-size: 26px !important; /* Уменьшаем журнальный заголовок */
+    }
+
+    /* --- Сетка товаров --- */
+    .product-grid {
+        gap: 15px; /* Уменьшаем расстояние между карточками */
+    }
+    
+    .product-card img {
+        height: 160px !important; /* Картинки делаем чуть ниже */
+    }
+
+    /* --- Личный кабинет --- */
+    .profile-layout {
+        grid-template-columns: 1fr; /* Боковое меню прыгает наверх, контент вниз */
+        margin: 20px auto;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr; /* Инпуты (Имя, Фамилия) встают друг под друга */
+    }
+    
+    .fav-grid {
+        grid-template-columns: repeat(2, 1fr); /* Избранное в 2 колонки */
+    }
+    
+    /* --- Виджет чата --- */
+    .chat-widget {
+        width: calc(100% - 40px); /* Чат не вылезает за края экрана */
+        right: 20px;
+    }
+}
+
+/* =========================================
+   ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ (до 480px)
+   ========================================= */
+@media (max-width: 480px) {
+    /* Товары перестраиваются в 1 крупную колонку */
+    .product-grid, .fav-grid {
+        grid-template-columns: 1fr; 
+    }
+    
+    .product-card img {
+        height: 220px !important; /* Возвращаем крупный размер картинке для 1 колонки */
+    }
+    
+    /* Товары в корзине перестраиваются компактно */
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}

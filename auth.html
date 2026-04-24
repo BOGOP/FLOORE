@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petalora - Вход и Регистрация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="auth-page-bg">
+
+    <div id="header-container"></div>
+
+    <main class="auth-wrapper container">
+        <div class="auth-card">
+            
+            <div class="auth-tabs">
+                <div class="auth-tab active" id="tabLogin">Вход</div>
+                <div class="auth-tab" id="tabRegister">Регистрация</div>
+            </div>
+
+            <form class="auth-form active" id="formLogin">
+                <div class="form-group">
+                    <label class="form-label">Email или телефон</label>
+                    <input type="text" class="form-input" placeholder="Введите email или телефон" value="sokolovdenisod@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Пароль</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-input" placeholder="••••••••" value="password123">
+                        <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
+                    </div>
+                </div>
+                
+                <a href="#" class="forgot-link">Забыли пароль?</a>
+                
+                <button type="button" class="btn-auth">Войти</button>
+
+                <div class="auth-divider">или войдите через</div>
+
+                <div style="display: flex; justify-content: center; margin-bottom: 25px;">
+                    <div id="g_id_onload"
+                         data-client_id="ТВОЙ_CLIENT_ID.apps.googleusercontent.com"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleGoogleAuth"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signin_with"
+                         data-size="large"
+                         data-logo_alignment="center">
+                    </div>
+                </div>
+
+                <div class="auth-footer">
+                    Нет аккаунта? <span id="toRegister">Зарегистрироваться</span>
+                </div>
+            </form>
+
+            <form class="auth-form" id="formRegister">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Имя</label>
+                        <input type="text" class="form-input" placeholder="Имя">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Фамилия</label>
+                        <input type="text" class="form-input" placeholder="Фамилия">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-input" placeholder="example@mail.com">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Телефон</label>
+                    <input type="tel" class="form-input" placeholder="+380 XX XXX XX XX">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Пароль</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-input" placeholder="Минимум 8 символов">
+                        <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Повторите пароль</label>
+                    <div class="password-wrapper">
+                        <input type="password" class="form-input" placeholder="••••••••">
+                        <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" checked>
+                    <label for="terms">Я согласен(а) с <a href="#">политикой конфиденциальности</a> и <a href="#">условиями использования</a></label>
+                </div>
+
+                <button type="button" class="btn-auth">Создать аккаунт</button>
+
+                <div class="auth-divider">или зарегистрируйтесь через</div>
+
+                <div style="display: flex; justify-content: center; margin-bottom: 25px;">
+                     <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signup_with"
+                         data-size="large"
+                         data-logo_alignment="center">
+                    </div>
+                </div>
+
+                <div class="auth-footer">
+                    Уже есть аккаунт? <span id="toLogin">Войти</span>
+                </div>
+            </form>
+
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

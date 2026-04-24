@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petalora — Бутик флористики</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="header-container"></div>
+
+    <div class="hero-banner">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <h1>Let flowers for you</h1>
+            </div>
+        </div>
+    </div>>
+
+    <main class="container">
+        <div class="section-header">
+            <h2>Хит продаж</h2>
+        </div>
+        
+        <div class="product-grid">
+            <div class="product-card">
+                <i class="far fa-heart wishlist-icon"></i>
+                <img src="assets/images/101 rose.jpg" alt="101 белая роза">
+                <div class="product-title">101 белая роза</div>
+                <div class="price-block">
+                    <span class="old-price">344 грн</span>
+                    <span class="new-price">255 грн</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <i class="far fa-heart wishlist-icon"></i>
+                <img src="assets/images/25_red_rose.png" alt="101 красная роза">
+                <div class="product-title">101 красная роза</div>
+                <div class="price-block">
+                    <span class="old-price">344 грн</span>
+                    <span class="new-price">255 грн</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <i class="far fa-heart wishlist-icon"></i>
+                <img src="assets/images/15_pink_tulpans.avif" alt="15 тюльпанов">
+                <div class="product-title">15 тюльпанов</div>
+                <div class="price-block">
+                    <span class="new-price">510 грн</span>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <i class="far fa-heart wishlist-icon"></i>
+                <img src="assets/images/25_red_rose.png" alt="25 красных роз">
+                <div class="product-title">25 красных роз</div>
+                <div class="price-block">
+                    <span class="new-price">770 грн</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="chat-widget" id="chatWidget"> 
+        <div class="chat-header">
+            <div class="chat-header-info" style="display:flex; align-items:center; gap:10px;">
+                <div class="chat-avatar"><i class="fas fa-user-circle"></i></div>
+                <div>
+                    <strong>София</strong><br>
+                    <small style="font-weight:normal;">Консультант</small>
+                </div>
+            </div>
+            <button class="close-chat-btn" id="closeChatBtn" style="background:none; border:none; color:white; cursor:pointer;"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="chat-body">
+            <div class="msg bot-msg">Здравствуйте! Я могу вам чем-то помочь?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Введите сообщение...">
+            <i class="fas fa-paper-plane" style="color: #ccc;"></i>
+        </div>
+    </div>
+    <button class="open-chat-btn" id="openChatBtn">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+/* =========================================
+   1. ПАЛИТРА И БАЗОВЫЕ НАСТРОЙКИ
+   ========================================= */
+:root {
+    --bg-milky: #FAF7F2;      
+    --accent-rose: #C27070;   
+    --accent-sage: #849383;   
+    --text-main: #2D2B2A;     
+    --text-light: #7A7571;    
+    
+    --card: #FFFFFF;
+    --border: #E8E2DA;
+    --shadow: 0 4px 15px rgba(45, 43, 42, 0.06);
+
+    /* Обратная совместимость для JS */
+    --purple: var(--text-main); 
+    --purple-dark: var(--text-main);
+    --pink: var(--accent-rose);
+    --purple-nav: #FFFFFF;    
+    --pink-accent: var(--accent-rose);
+    --bg-light: var(--bg-milky);
+    --text-dark: var(--text-main);
+    --text-gray: var(--text-light);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-milky);
+    color: var(--text-main);
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* =========================================
+   2. ТИПОГРАФИКА (ПРЕМИУМ)
+   ========================================= */
+h1, h2, h3, .logo, .card-title, .product-title, .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+/* =========================================
+   3. ШАПКА И НАВИГАЦИЯ
+   ========================================= */
+header, .top-header, nav, .main-nav {
+    background-color: #FFFFFF;
+    border-bottom: 1px solid var(--border);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 48px;
+}
+
+.logo {
+    font-size: 28px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-city {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-main);
+    transition: 0.2s;
+    position: relative;
+}
+
+.icon-btn:hover {
+    color: var(--accent-rose);
+}
+
+.icon-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.badge, .badge-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--accent-rose);
+    color: #fff;
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav {
+    padding: 0 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 4px;
+}
+
+.nav-link, .menu a, .menu li {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 14px 18px;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+}
+
+.nav-link:hover, .menu a:hover {
+    color: var(--accent-rose);
+    border-bottom-color: var(--accent-rose);
+}
+
+.search-wrap { position: relative; display: flex; align-items: center; }
+.search-input { background: #f5f5f5; border: 1px solid var(--border); border-radius: 20px; padding: 8px 40px 8px 16px; font-size: 13px; width: 220px; outline: none; transition: 0.3s; }
+.search-btn { position: absolute; right: 10px; background: none; border: none; cursor: pointer; color: var(--text-light); }
+
+/* =========================================
+   4. КНОПКИ (УНИВЕРСАЛЬНЫЕ)
+   ========================================= */
+.btn-auth {
+    width: 100%;
+    background-color: var(--text-main);
+    color: #ffffff;
+    border: 1px solid var(--text-main);
+    padding: 18px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-auth:hover { background-color: transparent; color: var(--text-main); }
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-main);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover { background-color: var(--text-main); color: #ffffff; }
+
+.btn-primary, .btn-pink, .checkout-btn {
+    background-color: var(--accent-rose);
+    color: #ffffff;
+    border: 1px solid var(--accent-rose);
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-pink:hover, .checkout-btn:hover { background-color: transparent; color: var(--accent-rose); }
+
+.btn-social {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 15px;
+    background-color: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-social:hover { background-color: var(--bg-milky); border-color: var(--text-light); }
+.btn-cart {
+    width: calc(100% - 30px);
+    margin: 15px auto;
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-main);
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cart:hover {
+    background-color: var(--text-main);
+    color: #ffffff;
+}
+
+/* =========================================
+   5. ГЛАВНЫЙ БАННЕР И ТОВАРЫ
+   ========================================= */
+.hero-banner {
+    background: linear-gradient(135deg, #F4EBE6 0%, #FAF7F2 100%);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.hero-inner { text-align: center; width: 100%; max-width: 1200px; padding: 0 48px;}
+.hero-text { margin: 0 auto; }
+.hero-text h1 { font-size: 32px; line-height: 1; font-style: italic; font-weight: 500; letter-spacing: 1px; margin: 0; }
+
+.section-header { text-align: center; margin: 0 0 25px; }
+.section-header h2 { font-size: 32px; text-transform: lowercase; font-variant: small-caps; }
+
+.product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 50px; }
+
+.product-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding-bottom: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(45, 43, 42, 0.1); }
+.product-card img { 
+    width: 100%; 
+    height: 220px; /* Чуть увеличили высоту, чтобы букеты дышали */
+    object-fit: contain; /* ВАЖНО: теперь букеты не обрезаются, а вписываются целиком */
+    padding: 15px; /* Аккуратный отступ от краев карточки */
+    margin-bottom: 5px; 
+}
+
+.wishlist-icon { position: absolute; top: 10px; right: 10px; color: var(--text-light); font-size: 20px; cursor: pointer; }
+.product-title { font-size: 16px; margin: 15px 0 5px; }
+
+.price-block { display: flex; justify-content: center; align-items: baseline; gap: 8px; margin-top: 5px; }
+.old-price { font-size: 14px; color: #9E9692; text-decoration: line-through; font-weight: 500; }
+.new-price { font-size: 17px; font-weight: 700; color: var(--text-main); }
+
+/* =========================================
+   6. СТРАНИЦА АВТОРИЗАЦИИ
+   ========================================= */
+.auth-page-bg { background-color: var(--bg-milky); }
+.auth-wrapper { display: flex; justify-content: center; align-items: center; padding: 60px 15px; min-height: calc(100vh - 120px); }
+.auth-card { background: var(--card); width: 100%; max-width: 550px; border-radius: 16px; box-shadow: var(--shadow); padding: 50px 60px; border: 1px solid var(--border); }
+
+.auth-tabs { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 25px; }
+.auth-tab { flex: 1; text-align: center; padding: 15px 0; cursor: pointer; font-size: 16px; color: var(--text-light); border-bottom: 2px solid transparent; transition: all 0.3s; }
+.auth-tab.active { color: var(--text-main); font-weight: 700; border-bottom: 2px solid var(--accent-rose); }
+.auth-tab:hover { color: var(--text-main); }
+
+.auth-form { display: none; }
+.auth-form.active { display: block; }
+.form-group { margin-bottom: 15px; }
+.form-row { display: flex; gap: 15px; }
+
+.form-label { display: block; font-size: 13px; color: var(--text-light); margin-bottom: 8px; font-weight: 600; }
+.form-input { width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 4px; font-size: 15px; outline: none; transition: 0.2s; background: #fff; color: var(--text-main); }
+.form-input:focus { border-color: var(--text-main); }
+
+.password-wrapper { position: relative; display: flex; align-items: center; }
+.password-wrapper .form-input { padding-right: 50px; }
+.toggle-password { position: absolute; right: 18px; background: none; border: none; color: var(--text-light); font-size: 18px; cursor: pointer; outline: none; transition: 0.2s; }
+.toggle-password:hover { color: var(--text-main); }
+
+.forgot-link { display: block; text-align: right; font-size: 13px; color: var(--text-main); margin-bottom: 20px; text-decoration: underline; }
+.auth-divider { display: flex; align-items: center; text-align: center; color: var(--text-light); font-size: 12px; margin: 25px 0; }
+.auth-divider::before, .auth-divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border); }
+.auth-divider::before { margin-right: 15px; }
+.auth-divider::after { margin-left: 15px; }
+
+.auth-footer { text-align: center; font-size: 13px; color: var(--text-light); }
+.auth-footer span { color: var(--text-main); cursor: pointer; font-weight: 700; text-decoration: underline; }
+
+/* =========================================
+   7. ЛИЧНЫЙ КАБИНЕТ (ПРОФИЛЬ)
+   ========================================= */
+.profile-layout { display: grid; grid-template-columns: 240px 1fr; gap: 24px; max-width: 1200px; margin: 40px auto; padding: 0 48px; }
+
+.sidebar { background: var(--card); border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border); height: fit-content; overflow: hidden; }
+.sidebar-avatar { display: flex; flex-direction: column; align-items: center; padding: 32px 20px 24px; border-bottom: 1px solid var(--border); }
+.avatar-circle { width: 72px; height: 72px; border-radius: 50%; background: var(--bg-milky); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; border: 1px solid var(--border); }
+.sidebar-name { font-weight: 700; font-size: 16px; }
+.sidebar-email { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+.sidebar-item { display: flex; align-items: center; gap: 12px; padding: 13px 20px; font-size: 14px; font-weight: 500; cursor: pointer; transition: all .2s; color: var(--text-main); border-left: 3px solid transparent; }
+.sidebar-item:hover { background: var(--bg-milky); color: var(--accent-rose); }
+.sidebar-item.active { color: var(--text-main); border-left-color: var(--text-main); background: var(--bg-milky); font-weight: 700; }
+.sidebar-item.danger { color: #e74c3c; }
+.sidebar-item.danger:hover { background: #fdecea; border-left-color: #e74c3c; color: #c0392b; }
+.sidebar-item svg { width: 20px; height: 20px; flex-shrink: 0; }
+.sidebar-badge { margin-left: auto; background: var(--accent-rose); color: #fff; border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 700; }
+
+.content-card { background: var(--card); border-radius: 12px; box-shadow: var(--shadow); border: 1px solid var(--border); padding: 36px; display: none; }
+.content-card.active { display: block; }
+.card-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin-bottom: 4px; }
+.card-subtitle { font-size: 13px; color: var(--text-light); margin-bottom: 28px; }
+
+/* --- Избранное --- */
+.fav-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.fav-card { border: 1px solid var(--border); border-radius: 12px; background: #fff; position: relative; overflow: hidden; transition: 0.3s; }
+.fav-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.fav-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 64px; background: var(--bg-milky); }
+.fav-remove { position: absolute; top: 10px; right: 10px; width: 32px; height: 32px; border-radius: 50%; background: #fff; border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; color: var(--text-light); }
+.fav-remove:hover { background: var(--accent-rose); color: #fff; border-color: var(--accent-rose); }
+.fav-info { padding: 14px; text-align: center; }
+.fav-name { font-weight: 600; font-size: 14px; }
+.fav-price { color: var(--text-main); font-weight: 700; font-size: 16px; margin: 4px 0 10px; }
+.fav-add-cart { width: 100%; background: var(--text-main); color: #fff; border: 1px solid var(--text-main); border-radius: 4px; padding: 9px; cursor: pointer; transition: 0.2s; font-weight: 600; }
+.fav-add-cart:hover { background: transparent; color: var(--text-main); }
+
+/* --- Корзина --- */
+.cart-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; align-items: start; }
+.cart-items { display: flex; flex-direction: column; gap: 14px; }
+.cart-item { display: flex; gap: 16px; align-items: center; border: 1px solid var(--border); border-radius: 12px; padding: 16px; background: #fff; }
+.cart-item-img { width: 80px; height: 80px; border-radius: 8px; background: var(--bg-milky); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+.cart-item-details { flex: 1; }
+.qty-control { display: flex; align-items: center; gap: 10px; }
+.qty-btn { width: 30px; height: 30px; border-radius: 4px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-weight: 600; }
+.cart-item-remove { background: none; border: none; cursor: pointer; color: #ccc; transition: 0.2s; }
+.cart-item-remove:hover { color: #e74c3c; }
+.cart-summary { border: 1px solid var(--border); border-radius: 12px; padding: 24px; background: #fff; }
+.summary-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 12px; color: var(--text-light); }
+.summary-row.total { font-size: 18px; font-weight: 700; color: var(--text-main); border-top: 1px solid var(--border); padding-top: 12px; margin-top: 8px; }
+.promo-input { width: 100%; border: 1px solid var(--border); border-radius: 4px; padding: 10px 14px; outline: none; margin: 16px 0; }
+
+/* --- Заказы и Адреса --- */
+.order-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 16px; background: #fff; }
+.order-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+.order-status { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 4px; }
+.status-delivered { background: #e8f8f0; color: #27ae60; }
+.status-pending { background: #fff8e1; color: #f39c12; }
+.order-item-chip { background: var(--bg-milky); border-radius: 4px; padding: 8px 12px; font-size: 13px; display: inline-flex; margin: 0 5px 5px 0; border: 1px solid var(--border); }
+
+.address-card { border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; background: #fff; }
+.address-card.default { border-color: var(--text-main); }
+.default-badge { background: var(--bg-milky); color: var(--text-main); font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); }
+.add-address-btn { width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 13px; border: 2px dashed var(--border); border-radius: 12px; background: none; color: var(--text-light); font-weight: 600; cursor: pointer; transition: 0.2s; }
+.add-address-btn:hover { border-color: var(--text-main); color: var(--text-main); }
+
+/* =========================================
+   8. ВИДЖЕТЫ (Чат, Поиск, Уведомления)
+   ========================================= */
+.chat-widget { position: fixed; bottom: 20px; right: 20px; width: 300px; background: white; border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; z-index: 1000; display: none; border: 1px solid var(--border); }
+.chat-header { background: var(--accent-rose); color: white; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+.chat-body { height: 200px; padding: 15px; background: #f9f9f9; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+.msg { padding: 8px 12px; border-radius: 12px; font-size: 13px; max-width: 80%; }
+.bot-msg { background: #e9ecef; align-self: flex-start; }
+.user-msg { background: white; border: 1px solid var(--accent-sage); color: var(--accent-sage); align-self: flex-end; }
+.chat-input { display: flex; padding: 10px; border-top: 1px solid var(--border); background: white; }
+.chat-input input { flex-grow: 1; border: none; outline: none; font-size: 13px; }
+.open-chat-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: var(--accent-rose); color: white; border: none; border-radius: 50%; font-size: 24px; cursor: pointer; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; z-index: 1000; transition: 0.2s; }
+.open-chat-btn:hover { transform: scale(1.1); }
+
+.search-results { position: absolute; top: calc(100% + 8px); right: 0; background: #fff; border-radius: 12px; box-shadow: var(--shadow); width: 320px; overflow: hidden; display: none; z-index: 200; border: 1px solid var(--border); }
+.search-results.active { display: block; }
+.search-result-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; cursor: pointer; border-bottom: 1px solid var(--border); }
+.search-result-item:hover { background: var(--bg-milky); }
+.search-result-img { width: 48px; height: 48px; border-radius: 8px; background: var(--bg-milky); display: flex; align-items: center; justify-content: center; font-size: 24px; }
+
+.toast { position: fixed; bottom: 30px; right: 30px; background: #27ae60; color: #fff; padding: 14px 20px; border-radius: 4px; font-weight: 600; font-size: 14px; transform: translateY(80px); opacity: 0; transition: 0.4s; z-index: 1000; }
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.error { background: #e74c3c; }
