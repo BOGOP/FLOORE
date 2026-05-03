@@ -87,23 +87,120 @@ const translations = {
         "hero_title": "Нехай квіти говорять за вас",
         "price": "грн",
         "nav_bouquets": "🎁 Букети квітів",
-        "nav_gifts": "Подарунки до квітів"
+        "nav_gifts": "Подарунки до квітів",
+        "nav_boxes": "Квіти в коробках",
+        "nav_baskets": "Кошики з квітами",
+        "search_placeholder": "Пошук...",
+        "auth_login_tab": "Вхід",
+        "auth_register_tab": "Реєстрація",
+        "auth_email": "Email або телефон",
+        "auth_pass": "Пароль",
+        "auth_forgot": "Забули пароль?",
+        "auth_login_btn": "Увійти",
+        "auth_or_login": "або увійдіть через",
+        "auth_no_account": "Немає акаунту?",
+        "auth_register_link": "Зареєструватися",
+        "auth_name": "Ім'я",
+        "auth_surname": "Прізвище",
+        "auth_email_only": "Email",
+        "auth_phone": "Телефон",
+        "auth_pass_repeat": "Повторіть пароль",
+        "auth_agree": "Я погоджуюсь з",
+        "auth_privacy": "політикою конфіденційності",
+        "auth_and": "та",
+        "auth_terms": "умовами використання",
+        "auth_register_btn": "Створити акаунт",
+        "auth_or_register": "або зареєструйтесь через",
+        "auth_has_account": "Вже є акаунт?",
+        "auth_login_link": "Увійти",
+        "cart_empty": "Кошик порожній. Виберіть квіти!",
+        "fav_empty": "В обраному поки нічого немає. Додавайте товари!",
+        "add_to_cart": "В кошик"
     },
     "en": {
         "bestsellers": "Bestsellers",
         "hero_title": "Let flowers speak for you",
         "price": "UAH",
         "nav_bouquets": "🎁 Flower Bouquets",
-        "nav_gifts": "Gifts for flowers"
+        "nav_gifts": "Gifts for flowers",
+        "nav_boxes": "Flowers in boxes",
+        "nav_baskets": "Flower baskets",
+        "search_placeholder": "Search...",
+        "auth_login_tab": "Login",
+        "auth_register_tab": "Register",
+        "auth_email": "Email or phone",
+        "auth_pass": "Password",
+        "auth_forgot": "Forgot password?",
+        "auth_login_btn": "Sign In",
+        "auth_or_login": "or sign in with",
+        "auth_no_account": "Don't have an account?",
+        "auth_register_link": "Sign Up",
+        "auth_name": "First Name",
+        "auth_surname": "Last Name",
+        "auth_email_only": "Email",
+        "auth_phone": "Phone",
+        "auth_pass_repeat": "Repeat password",
+        "auth_agree": "I agree to the",
+        "auth_privacy": "Privacy Policy",
+        "auth_and": "and",
+        "auth_terms": "Terms of Use",
+        "auth_register_btn": "Create Account",
+        "auth_or_register": "or sign up with",
+        "auth_has_account": "Already have an account?",
+        "auth_login_link": "Sign In",
+        "cart_empty": "Your cart is empty. Choose some flowers!",
+        "fav_empty": "Your wishlist is empty. Add some items!",
+        "add_to_cart": "Add to cart"
     },
     "ru": {
         "bestsellers": "Хит продаж",
         "hero_title": "Пусть цветы говорят за вас",
         "price": "грн",
         "nav_bouquets": "🎁 Букеты цветов",
-        "nav_gifts": "Подарки к цветам"
+        "nav_gifts": "Подарки к цветам",
+        "nav_boxes": "Цветы в коробках",
+        "nav_baskets": "Корзины с цветами",
+        "search_placeholder": "Поиск...",
+        "auth_login_tab": "Вход",
+        "auth_register_tab": "Регистрация",
+        "auth_email": "Email или телефон",
+        "auth_pass": "Пароль",
+        "auth_forgot": "Забыли пароль?",
+        "auth_login_btn": "Войти",
+        "auth_or_login": "или войдите через",
+        "auth_no_account": "Нет аккаунта?",
+        "auth_register_link": "Зарегистрироваться",
+        "auth_name": "Имя",
+        "auth_surname": "Фамилия",
+        "auth_email_only": "Email",
+        "auth_phone": "Телефон",
+        "auth_pass_repeat": "Повторите пароль",
+        "auth_agree": "Я согласен(а) с",
+        "auth_privacy": "политикой конфиденциальности",
+        "auth_and": "и",
+        "auth_terms": "условиями использования",
+        "auth_register_btn": "Создать аккаунт",
+        "auth_or_register": "или зарегистрируйтесь через",
+        "auth_has_account": "Уже есть аккаунт?",
+        "auth_login_link": "Войти",
+        "cart_empty": "Корзина пуста. Выберите цветы!",
+        "fav_empty": "В избранном пока ничего нет. Добавляйте товары!",
+        "add_to_cart": "В корзину"
     }
 };
+
+// Функция для получения текста прямо внутри JavaScript (если понадобится для уведомлений)
+window.t = function(key) {
+    const lang = localStorage.getItem('site_lang') || 'uk';
+    return translations[lang][key] || key;
+};
+// Функция для получения текста прямо внутри JavaScript
+function t(key) {
+    const lang = localStorage.getItem('site_lang') || 'uk';
+    return translations[lang][key] || key;
+    showToast('✅ Успешный вход!')
+    showToast( t('toast_login') );
+}
 
 function setLanguage(lang) {
     const elements = document.querySelectorAll('[data-i18n]');

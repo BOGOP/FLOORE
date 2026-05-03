@@ -16,46 +16,29 @@
         <div class="auth-card">
             
             <div class="auth-tabs">
-                <div class="auth-tab active" id="tabLogin">Вход</div>
-                <div class="auth-tab" id="tabRegister">Регистрация</div>
+                <div class="auth-tab active" id="tabLogin" data-i18n="auth_login_tab">Вход</div>
+                <div class="auth-tab" id="tabRegister" data-i18n="auth_register_tab">Регистрация</div>
             </div>
 
             <form class="auth-form active" id="formLogin">
                 <div class="form-group">
-                    <label class="form-label">Email или телефон</label>
+                    <label class="form-label" data-i18n="auth_email">Email или телефон</label>
                     <input type="text" class="form-input" placeholder="Введите email или телефон" value="sokolovdenisod@gmail.com">
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">Пароль</label>
+                    <label class="form-label" data-i18n="auth_pass">Пароль</label>
                     <div class="password-wrapper">
                         <input type="password" class="form-input" placeholder="••••••••" value="password123">
                         <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
                     </div>
                 </div>
                 
-                <a href="#" class="forgot-link">Забыли пароль?</a>
+                <a href="#" class="forgot-link" data-i18n="auth_forgot">Забыли пароль?</a>
                 
-                <button type="button" class="btn-auth" onclick="forceLogin()">Войти</button>
-                <div class="auth-divider">или войдите через</div>
-
-<div style="display: flex; justify-content: center; margin-bottom: 25px;">
-    <div id="g_id_onload"
-         data-client_id="ТВОЙ_CLIENT_ID.apps.googleusercontent.com"
-         data-context="signin"
-         data-ux_mode="popup"
-         data-callback="handleGoogleAuth"
-         data-auto_prompt="false">
-    </div>
-    <div class="g_id_signin"
-         data-type="standard"
-         data-shape="rectangular"
-         data-theme="outline"
-         data-text="signin_with"
-         data-size="large"
-         data-logo_alignment="center">
-    </div>
-</div>
+                <button type="button" class="btn-auth" onclick="forceLogin()" data-i18n="auth_login_btn">Войти</button>
+                
+                <div class="auth-divider" data-i18n="auth_or_login">или войдите через</div>
 
                 <div style="display: flex; justify-content: center; margin-bottom: 25px;">
                     <div id="g_id_onload"
@@ -76,34 +59,34 @@
                 </div>
 
                 <div class="auth-footer">
-                    Нет аккаунта? <span id="toRegister">Зарегистрироваться</span>
+                    <span data-i18n="auth_no_account">Нет аккаунта?</span> <span id="toRegister" data-i18n="auth_register_link" style="cursor: pointer;">Зарегистрироваться</span>
                 </div>
             </form>
 
             <form class="auth-form" id="formRegister">
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Имя</label>
+                        <label class="form-label" data-i18n="auth_name">Имя</label>
                         <input type="text" class="form-input" placeholder="Имя">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Фамилия</label>
+                        <label class="form-label" data-i18n="auth_surname">Фамилия</label>
                         <input type="text" class="form-input" placeholder="Фамилия">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Email</label>
+                    <label class="form-label" data-i18n="auth_email_only">Email</label>
                     <input type="email" class="form-input" placeholder="example@mail.com">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Телефон</label>
+                    <label class="form-label" data-i18n="auth_phone">Телефон</label>
                     <input type="tel" class="form-input" placeholder="+380 XX XXX XX XX">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Пароль</label>
+                    <label class="form-label" data-i18n="auth_pass">Пароль</label>
                     <div class="password-wrapper">
                         <input type="password" class="form-input" placeholder="Минимум 8 символов">
                         <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
@@ -111,7 +94,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Повторите пароль</label>
+                    <label class="form-label" data-i18n="auth_pass_repeat">Повторите пароль</label>
                     <div class="password-wrapper">
                         <input type="password" class="form-input" placeholder="••••••••">
                         <button type="button" class="toggle-password"><i class="far fa-eye"></i></button>
@@ -120,23 +103,17 @@
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="terms" checked>
-                    <label for="terms">Я согласен(а) с <a href="#">политикой конфиденциальности</a> и <a href="#">условиями использования</a></label>
+                    <label for="terms">
+                        <span data-i18n="auth_agree">Я согласен(а) с</span> 
+                        <a href="#" data-i18n="auth_privacy">политикой конфиденциальности</a> 
+                        <span data-i18n="auth_and">и</span> 
+                        <a href="#" data-i18n="auth_terms">условиями использования</a>
+                    </label>
                 </div>
 
-                <button type="button" class="btn-auth" onclick="forceRegister()">Создать аккаунт</button>
+                <button type="button" class="btn-auth" onclick="forceRegister()" data-i18n="auth_register_btn">Создать аккаунт</button>
 
-                <div class="auth-divider">или зарегистрируйтесь через</div>
-
-<div style="display: flex; justify-content: center; margin-bottom: 25px;">
-     <div class="g_id_signin"
-         data-type="standard"
-         data-shape="rectangular"
-         data-theme="outline"
-         data-text="signup_with"
-         data-size="large"
-         data-logo_alignment="center">
-    </div>
-</div>
+                <div class="auth-divider" data-i18n="auth_or_register">или зарегистрируйтесь через</div>
 
                 <div style="display: flex; justify-content: center; margin-bottom: 25px;">
                      <div class="g_id_signin"
@@ -150,7 +127,7 @@
                 </div>
 
                 <div class="auth-footer">
-                    Уже есть аккаунт? <button type="button" class="btn-auth" onclick="forceLogin()">Войти</button>
+                    <span data-i18n="auth_has_account">Уже есть аккаунт?</span> <span id="toLogin" data-i18n="auth_login_link" style="cursor: pointer; color: var(--primary-color);">Войти</span>
                 </div>
             </form>
 
